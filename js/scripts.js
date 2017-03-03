@@ -4,26 +4,19 @@ function Pizza(size) {
   this.toppings = [];
 }
 
-Pizza.prototype.calculatePrice = function() {
-  if (this.size === "S") {
-    this.price = 10;
-    if (this.toppings.length > 1) {
-      this.price += (this.toppings.length - 1) * 4;
+// ["size", base price, #of free toppings]
+var pricingGuidelines = [["S",10,1],["M",14,1],["L",18,2],["XL",22,3]];
+
+Pizza.prototype.calculatePizzaPrice = function() {
+  numberOfToppings = this.toppings.length;
+  size = this.size;
+  pricingGuidelines.forEach(function(element) {
+    if (size === element[0]) {
+      price = element[1];
+      if (numberOfToppings > element[2]) {
+        price += (numberOfToppings - element[2]) * 4;
+      }
     }
-  } else if (this.size === "M") {
-    this.price = 14;
-    if (this.toppings.length > 1) {
-      this.price += (this.toppings.length - 1) * 4;
-    }
-  } else if (this.size === "L") {
-    this.price = 18;
-    if (this.toppings.length > 2) {
-      this.price += (this.toppings.length - 2) * 4;
-    }
-  } else if (this.size === "XL") {
-    this.price = 22;
-    if (this.toppings.length > 3) {
-      this.price += (this.toppings.length - 3) * 4;
-    }
-  }
+  });
+  return this.price = price;
 }
