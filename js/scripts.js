@@ -20,3 +20,13 @@ Pizza.prototype.calculatePizzaPrice = function() {
   });
   return this.price = price;
 }
+
+var pizzaOrder = [];
+
+var calculateTotalPrice = function() {
+  var totalPrice = 0;
+  pizzaOrder.forEach(function(Pizza) {
+    totalPrice += Pizza.calculatePizzaPrice();
+  });
+  return totalPrice;
+};
