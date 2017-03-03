@@ -30,3 +30,25 @@ var calculateTotalPrice = function() {
   });
   return totalPrice;
 };
+
+// Front-end logic
+$(document).ready(function() {
+
+  $(".addPizza").click(function() {
+    event.preventDefault();
+    debugger;
+    var inputtedPizzaSize = $("input:radio[name=size]:checked").val();
+    var newPizza = new Pizza(inputtedPizzaSize);
+
+    $("input:checkbox:checked").each(function() {
+      var checkedTopping = $(this).find("input:checkbox:checked").val();
+      newPizza.toppings.push(newAddress);
+    });
+    newPizza.calculatePizzaPrice();
+    pizzaOrder.push(newPizza);
+
+    $(".selectedPizzas").append("You have chosen a " + newPizza.size + " pizza with " + newPizza.toppings.length + " toppings: " + newPizza.toppings + ". Price: $" + newPizza.price);
+  });
+
+  $(".completeOrder").click(function() {});
+});
