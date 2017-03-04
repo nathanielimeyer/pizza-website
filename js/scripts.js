@@ -21,6 +21,27 @@ Pizza.prototype.calculatePizzaPrice = function() {
   return this.price = price;
 }
 
+Pizza.prototype.summaryBuilder = function() {
+  return ("<p>You have chosen a" + this.sizeTranslator() + " pizza with " + this.toppings.length + " toppings: " + this.toppings + ". Price: $" + this.price +"</p>")
+}
+
+Pizza.prototype.sizeTranslator = function() {
+  switch(this.size) {
+    case "S":
+      return " small";
+      break;
+    case "M":
+      return " medium";
+      break;
+    case "L":
+      return " large";
+      break;
+    case "XL":
+      return "n extra-large";
+      break;
+  }
+}
+
 var pizzaOrder = [];
 
 var calculateTotalPrice = function() {
@@ -36,18 +57,21 @@ $(document).ready(function() {
 
   $(".addPizza").click(function() {
     event.preventDefault();
-    debugger;
     var inputtedPizzaSize = $("input:radio[name=size]:checked").val();
     var newPizza = new Pizza(inputtedPizzaSize);
 
     $("input:checkbox:checked").each(function() {
-      var checkedTopping = $(this).find("input:checkbox:checked").val();
-      newPizza.toppings.push(newAddress);
+      var checkedTopping = $(this).val();
+      newPizza.toppings.push(checkedTopping);
     });
     newPizza.calculatePizzaPrice();
     pizzaOrder.push(newPizza);
 
-    $(".selectedPizzas").append("You have chosen a " + newPizza.size + " pizza with " + newPizza.toppings.length + " toppings: " + newPizza.toppings + ". Price: $" + newPizza.price);
+    $("#selectedPizzas").show();
+    $("#selectedPizzas").append(newPizza.summaryBuilder());
+    $("#inputForm").hide();
+
+
   });
 
   $(".completeOrder").click(function() {});

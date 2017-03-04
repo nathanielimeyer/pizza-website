@@ -1,3 +1,8 @@
-.response, #errorFeedback {
+.response, #errorFeedback, #selectedPizzas {
   display: none;
+}
+
+body {
+  background-image: url("../img/Pizza_Dimension.png");
+  background-color: #ccc;
 }
