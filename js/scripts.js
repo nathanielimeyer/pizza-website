@@ -22,7 +22,7 @@ Pizza.prototype.calculatePizzaPrice = function() {
 }
 
 Pizza.prototype.summaryBuilder = function() {
-  return ("<p>You have chosen a" + this.sizeTranslator() + " pizza with " + this.toppings.length + " toppings: " + this.toppings + ". Price: $" + this.price +"</p>")
+  return ("<li>a" + this.sizeTranslator() + " pizza with " + this.toppings.length + " toppings: " + this.toppings + ". Price: $" + this.price +"</li>")
 }
 
 Pizza.prototype.sizeTranslator = function() {
@@ -47,7 +47,7 @@ var pizzaOrder = [];
 var calculateTotalPrice = function() {
   var totalPrice = 0;
   pizzaOrder.forEach(function(Pizza) {
-    totalPrice += Pizza.calculatePizzaPrice();
+    totalPrice += Pizza.price;
   });
   return totalPrice;
 };
@@ -55,7 +55,7 @@ var calculateTotalPrice = function() {
 // Front-end logic
 $(document).ready(function() {
 
-  $(".addPizza").click(function() {
+  $("#addPizza").click(function() {
     event.preventDefault();
     var inputtedPizzaSize = $("input:radio[name=size]:checked").val();
     var newPizza = new Pizza(inputtedPizzaSize);
@@ -67,12 +67,21 @@ $(document).ready(function() {
     newPizza.calculatePizzaPrice();
     pizzaOrder.push(newPizza);
 
-    $("#selectedPizzas").show();
+    $("#selectedPizzas, #addMorePizzas, #completeOrder").show();
     $("#selectedPizzas").append(newPizza.summaryBuilder());
+    $("#orderTotal").text("You have selected " + pizzaOrder.length + " pizzas for a total price of $" + calculateTotalPrice() + ".")
     $("#inputForm").hide();
-
-
   });
 
-  $(".completeOrder").click(function() {});
+  $("#addMorePizzas").click(function() {
+    event.preventDefault();
+    $("#inputForm").show();
+    $("#addMorePizzas").hide();
+  });
+
+  $("#completeOrder").click(function() {
+    event.preventDefault();
+    $("#addMorePizzas, #completeOrder, #inputForm").hide();
+    $("#finalOrder").show();
+  });
 });

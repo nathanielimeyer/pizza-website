@@ -1,4 +1,4 @@
-.response, #errorFeedback, #selectedPizzas {
+.response, #errorFeedback, #selectedPizzas, #addMorePizzas, #completeOrder, #finalOrder {
   display: none;
 }
 

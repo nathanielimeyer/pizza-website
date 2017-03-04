@@ -8,7 +8,7 @@
     <title>Pizza Dimension</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container well">
       <h1>Pizza Dimension</h1>
       <form id="inputForm">
         <div class="radio">
@@ -49,12 +49,19 @@
         <input type="checkbox" id="cbox6" value="kale">
         <label for="cbox6">Kale</label>
         <br>
-        <button type="submit" name="button" class="addPizza">Add Pizza</button>
+        <button type="submit" name="button" id="addPizza">Add Pizza</button>
       </form>
       <div id="selectedPizzas">
+        <p>You have chosen: </p>
+        <ul></ul>
       </div>
-      <button type="submit" name="button" class="addMorePizzas">Add Another Pizza To Your Order</button>
-      <button type="submit" name="button" class="completeOrder">Check Out</button>      
+      <div id="orderTotal">
+      </div>
+      <button type="submit" name="button" id="addMorePizzas">Add Another Pizza To Your Order</button>
+      <button type="submit" name="button" id="completeOrder">Check Out</button>
+      <div id="finalOrder">
+        <p>Thanks so much for your order. One of our drivers will psychically determine your location and bring your order in about 45 minutes.</p>
+      </div>
     </div>
   </body>
 </html>
